@@ -27,15 +27,9 @@ matrix:
 
     - name: ubuntu-gcc-arm64
       os: linux
-      arch: arm64
-      dist: bionic
-      compiler: gcc
-      env:
-        - CONFIG_OPTS="--with-pthread"
-
-    - name: ubuntu-gcc-ppc64le
-      os: linux
-      arch: ppc64le
+      arch: arm64-graviton2
+      virt: lxd
+      group: edge
       dist: bionic
       compiler: gcc
       env:
@@ -52,23 +46,11 @@ matrix:
 
     - name: ubuntu-clang-arm64
       os: linux
-      arch: arm64
+      arch: arm64-graviton2
+      virt: lxd
+      group: edge
       dist: bionic
       compiler: clang
-      env:
-        - CONFIG_OPTS="--with-pthread"
-
-    - name: ubuntu-clang-ppc64le
-      os: linux
-      arch: ppc64le
-      dist: bionic
-      compiler: clang
-      env:
-        - CONFIG_OPTS="--with-pthread"
-
-    # clang based build for macOS
-    - name: macOS
-      os: osx
       env:
         - CONFIG_OPTS="--with-pthread"
 
@@ -82,12 +64,12 @@ matrix:
       compiler: gcc
       env:
         - CONFIG_OPTS="--without-pthread"
-
-    # Try on an uncommon, big endian system
-    - name: ubuntu-gcc-s390x
+    - name: ubuntu-gcc-arm64-nopthread
       os: linux
-      arch: s390x
-      dist: bionic
+      arch: arm64-graviton2
+      virt: lxd
+      group: edge
+      dist: xenial
       compiler: gcc
       env:
-        - CONFIG_OPTS="--with-pthread"
+        - CONFIG_OPTS="--without-pthread"
